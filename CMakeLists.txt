@@ -11,6 +11,7 @@ find_package(catkin REQUIRED COMPONENTS
   actionlib
   actionlib_msgs
   geometry_msgs
+  message_generation
   nav_msgs
   roscpp
   rospy
@@ -59,6 +60,10 @@ find_package(catkin REQUIRED COMPONENTS
 #   Message1.msg
 #   Message2.msg
 # )
+add_message_files(
+    FILES
+    RobotOdom.msg
+)
 
 ## Generate services in the 'srv' folder
 # add_service_files(
@@ -78,6 +83,7 @@ find_package(catkin REQUIRED COMPONENTS
    DEPENDENCIES
    actionlib_msgs
    geometry_msgs
+   std_msgs
  )
 
 ################################################
@@ -114,6 +120,7 @@ catkin_package(
 #  LIBRARIES assignment_2_2023
 #  CATKIN_DEPENDS actionlib actionlib_msgs geometry_msgs nav_msgs roscpp rospy sensor_msgs std_msgs std_srvs tf
 #  DEPENDS system_lib
+    CATKIN_DEPENDS rospy std_msgs geometry_msgs message_runtime
 )
 
 ###########
