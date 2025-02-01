@@ -8,6 +8,6 @@
     <node pkg="assignment_2_2024" type="bug_as.py" name="bug_action_service" output="screen" />
     <node pkg="assignment_2_2024" type="set_target.py" name="set_target" output="screen" launch-prefix="lxterminal -e" />
     <node pkg="assignment_2_2024" type="pub_pos_vit.py" name="pub_pos_vit" output="screen" launch-prefix="lxterminal -e" />
-    <node pkg="assignment_2_2024" type="last_target.py" name="last_target" />
+    <node pkg="assignment_2_2024" type="last_target.py" name="last_target" output="screen" launch-prefix="lxterminal -e" />
     
 </launch>

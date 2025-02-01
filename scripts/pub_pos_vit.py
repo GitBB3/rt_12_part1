@@ -3,8 +3,7 @@
 import rospy
 import actionlib
 from nav_msgs.msg import Odometry
-from assignment_2_2024.msg import RobotOdom, PlanningAction, PlanningGoal
-from actionlib_msgs.msg import GoalStatus
+from assignment_2_2024.msg import RobotOdom
 
 robot_state = RobotOdom()
 
