@@ -6,6 +6,12 @@ from nav_msgs.msg import Odometry
 from assignment_2_2024.msg import RobotOdom, PlanningAction, PlanningGoal
 from actionlib_msgs.msg import GoalStatus
 
+float dist_last_target=0;
+
+def odom_callback(x,y):
+	 # compute cartesian distance
+
+
 def set_target_client():
 	global first_start
 	client = actionlib.SimpleActionClient('/reaching_goal', PlanningAction)
@@ -51,6 +57,7 @@ def set_target_client():
 if __name__ == '__main__':
 	rospy.init_node('action_client', anonymous=True)
 	
+	rospy.Subscriber('/odom', Odometry, odom_callback) # to compute the distance
 	set_target_client()
 	
 	rospy.spin()
