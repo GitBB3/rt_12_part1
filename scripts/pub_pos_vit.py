@@ -1,5 +1,16 @@
 #!/usr/bin/env python
 
+"""
+.. module: pub_pos_vit
+   :platform: unix
+   :synopsis: Python node publishing the robot position and velocity as a custom message (x, y, x_vel, vel_z), by relying on the values published on the topic */odom*.
+   
+.. moduleauthor:: Bertille Beaujean <beaujean.bertille@orange.fr>
+
+This is the description. With some modifications here.
+
+"""
+
 import rospy
 import actionlib
 from nav_msgs.msg import Odometry
@@ -8,7 +19,15 @@ from assignment_2_2024.msg import RobotOdom
 robot_state = RobotOdom()
 
 def odom_callback(msg):
-
+	"""This function does something.
+	Args:
+	   msg (RobotOdom): The custom message.
+	Kwargs:
+	   what (can): this possibly be.
+	Returns:
+	   nothing.
+	
+	"""
 	robot_state.x = msg.pose.pose.position.x
 	robot_state.y = msg.pose.pose.position.y
 	robot_state.z = 0

@@ -3,15 +3,15 @@
 # For the full list of built-in configuration values, see the documentation:
 # https://www.sphinx-doc.org/en/master/usage/configuration.html
 
+# -- Project information -----------------------------------------------------
+# https://www.sphinx-doc.org/en/master/usage/configuration.html#project-information
+
 import os
 import subprocess
 import sys
 sys.path.insert(0, os.path.abspath('../'))
 
 show_authors=True
-
-# -- Project information -----------------------------------------------------
-# https://www.sphinx-doc.org/en/master/usage/configuration.html#project-information
 
 project = 'assignment_2_2024'
 copyright = '2025, Bertille Beaujean beaujean.bertille@orange.fr'
