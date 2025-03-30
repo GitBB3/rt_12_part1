@@ -7,7 +7,15 @@
    
 .. moduleauthor:: Bertille Beaujean <beaujean.bertille@orange.fr>
 
-This is the description. With some modifications here.
+ROS node to publish the odometry of the robot. The node publishes the
+robot position and velocity as a custom message (x,y, vel_x, vel_z), by relying on the values published on the
+topic /odom.
+
+**Subscribes to**:
+/odom topic where the simulator publishes the robot position
+
+**Publishes to**:
+/robot_odom the desired components of the odometry of the robot
 
 """
 
@@ -18,14 +26,15 @@ from assignment_2_2024.msg import RobotOdom
 
 robot_state = RobotOdom()
 
+
 def odom_callback(msg):
-	"""This function does something.
+	"""This function reads the relevant position and velocity sent through the message *msg* and should be the information from the topic */odom*. Then, it updates the values of the *robot_state* which is a custom message of type *RobotOdom*, with the current values of (x,y, vel_x, vel_z).
+	
 	Args:
-	   msg (RobotOdom): The custom message.
-	Kwargs:
-	   what (can): this possibly be.
+	   msg (geometry_msgs): The odometry of the robot.
+	   
 	Returns:
-	   nothing.
+	   No return value.
 	
 	"""
 	robot_state.x = msg.pose.pose.position.x
@@ -37,6 +46,15 @@ def odom_callback(msg):
 
 
 def publish_data(event):
+	"""This function publishes the values of position and velocity of the robot communicated by the custom message *(RobotOdom)* *event*.
+	
+	Args:
+	   event (RobotOdom): The custom message (x,y, vel_x, vel_z).
+	   
+	Returns:
+	   No return value. 
+	
+	"""
 	robot_state_pub.publish(robot_state)
     
 	rospy.loginfo(f"Position: x={robot_state.x}, y={robot_state.y}")

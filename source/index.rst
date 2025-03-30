@@ -25,35 +25,18 @@ Assignment 2 documentation
 This is the documentation of the 2nd assignment or Research Track 1 realised during the first semester.
 
 
-bug_as.py
-*******************************************
 
-
-
-go_to_point_service.py
-*******************************************
-
-
-
-last_target.py
-*******************************************
-
-
-
-pub_pos_vit.py
-*******************************************
+Publisher of the odometry of the robot: *pub_pos_vit.py*
+************************************************************
 
 .. automodule:: assignment_2_2024.scripts.pub_pos_vit
    :members:
 
-set_target.py
-*******************************************
+Action client allowing the user to set a target: *set_target.py*
+*******************************************************************
 
-
-   
-wall_follow_service.py
-*******************************************
-
+Service returning the coordinates of the last target: *last_target.py*
+**************************************************************************************
 
    
 

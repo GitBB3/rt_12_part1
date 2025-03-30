@@ -46,12 +46,13 @@
 <li><a class="reference internal" href="#">Documentation of the second <strong>Research Track 1</strong> assignment: <em>assignment_2_2024</em></a></li>
 <li><a class="reference internal" href="#indices-and-tables">Indices and tables</a></li>
 <li><a class="reference internal" href="#assignment-2-documentation">Assignment 2 documentation</a><ul>
-<li><a class="reference internal" href="#bug-as-py">bug_as.py</a></li>
-<li><a class="reference internal" href="#go-to-point-service-py">go_to_point_service.py</a></li>
-<li><a class="reference internal" href="#last-target-py">last_target.py</a></li>
-<li><a class="reference internal" href="#pub-pos-vit-py">pub_pos_vit.py</a></li>
-<li><a class="reference internal" href="#set-target-py">set_target.py</a></li>
-<li><a class="reference internal" href="#wall-follow-service-py">wall_follow_service.py</a></li>
+<li><a class="reference internal" href="#module-assignment_2_2024.scripts.pub_pos_vit">Publisher of the odometry of the robot: <em>pub_pos_vit.py</em></a><ul>
+<li><a class="reference internal" href="#assignment_2_2024.scripts.pub_pos_vit.odom_callback"><code class="docutils literal notranslate"><span class="pre">odom_callback()</span></code></a></li>
+<li><a class="reference internal" href="#assignment_2_2024.scripts.pub_pos_vit.publish_data"><code class="docutils literal notranslate"><span class="pre">publish_data()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#action-client-allowing-the-user-to-set-a-target-set-target-py">Action client allowing the user to set a target: <em>set_target.py</em></a></li>
+<li><a class="reference internal" href="#service-returning-the-coordinates-of-the-last-target-last-target-py">Service returning the coordinates of the last target: <em>last_target.py</em></a></li>
 </ul>
 </li>
 </ul>
@@ -96,23 +97,50 @@
 <section id="assignment-2-documentation">
 <h1>Assignment 2 documentation<a class="headerlink" href="#assignment-2-documentation" title="Permalink to this heading"></a></h1>
 <p>This is the documentation of the 2nd assignment or Research Track 1 realised during the first semester.</p>
-<section id="bug-as-py">
-<h2>bug_as.py<a class="headerlink" href="#bug-as-py" title="Permalink to this heading"></a></h2>
+<section id="module-assignment_2_2024.scripts.pub_pos_vit">
+<span id="publisher-of-the-odometry-of-the-robot-pub-pos-vit-py"></span><h2>Publisher of the odometry of the robot: <em>pub_pos_vit.py</em><a class="headerlink" href="#module-assignment_2_2024.scripts.pub_pos_vit" title="Permalink to this heading"></a></h2>
+<p><em>Module author: Bertille Beaujean &lt;<a class="reference external" href="mailto:beaujean&#46;bertille&#37;&#52;&#48;orange&#46;fr">beaujean<span>&#46;</span>bertille<span>&#64;</span>orange<span>&#46;</span>fr</a>&gt;</em></p>
+<p>ROS node to publish the odometry of the robot. The node publishes the
+robot position and velocity as a custom message (x,y, vel_x, vel_z), by relying on the values published on the
+topic /odom.</p>
+<p><strong>Subscribes to</strong>:
+/odom topic where the simulator publishes the robot position</p>
+<p><strong>Publishes to</strong>:
+/robot_odom the desired components of the odometry of the robot</p>
+<dl class="py function">
+<dt class="sig sig-object py" id="assignment_2_2024.scripts.pub_pos_vit.odom_callback">
+<span class="sig-prename descclassname"><span class="pre">assignment_2_2024.scripts.pub_pos_vit.</span></span><span class="sig-name descname"><span class="pre">odom_callback</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">msg</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/assignment_2_2024/scripts/pub_pos_vit.html#odom_callback"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#assignment_2_2024.scripts.pub_pos_vit.odom_callback" title="Permalink to this definition"></a></dt>
+<dd><p>This function reads the relevant position and velocity sent through the message <em>msg</em> and should be the information from the topic <em>/odom</em>. Then, it updates the values of the <em>robot_state</em> which is a custom message of type <em>RobotOdom</em>, with the current values of (x,y, vel_x, vel_z).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>msg</strong> (<em>geometry_msgs</em>) – The odometry of the robot.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>No return value.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="assignment_2_2024.scripts.pub_pos_vit.publish_data">
+<span class="sig-prename descclassname"><span class="pre">assignment_2_2024.scripts.pub_pos_vit.</span></span><span class="sig-name descname"><span class="pre">publish_data</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">event</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/assignment_2_2024/scripts/pub_pos_vit.html#publish_data"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#assignment_2_2024.scripts.pub_pos_vit.publish_data" title="Permalink to this definition"></a></dt>
+<dd><p>This function publishes the values of position and velocity of the robot communicated by the custom message <em>(RobotOdom)</em> <em>event</em>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>event</strong> (<em>RobotOdom</em>) – The custom message (x,y, vel_x, vel_z).</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>No return value.</p>
+</dd>
+</dl>
+</dd></dl>
+
 </section>
-<section id="go-to-point-service-py">
-<h2>go_to_point_service.py<a class="headerlink" href="#go-to-point-service-py" title="Permalink to this heading"></a></h2>
+<section id="action-client-allowing-the-user-to-set-a-target-set-target-py">
+<h2>Action client allowing the user to set a target: <em>set_target.py</em><a class="headerlink" href="#action-client-allowing-the-user-to-set-a-target-set-target-py" title="Permalink to this heading"></a></h2>
 </section>
-<section id="last-target-py">
-<h2>last_target.py<a class="headerlink" href="#last-target-py" title="Permalink to this heading"></a></h2>
-</section>
-<section id="pub-pos-vit-py">
-<h2>pub_pos_vit.py<a class="headerlink" href="#pub-pos-vit-py" title="Permalink to this heading"></a></h2>
-</section>
-<section id="set-target-py">
-<h2>set_target.py<a class="headerlink" href="#set-target-py" title="Permalink to this heading"></a></h2>
-</section>
-<section id="wall-follow-service-py">
-<h2>wall_follow_service.py<a class="headerlink" href="#wall-follow-service-py" title="Permalink to this heading"></a></h2>
+<section id="service-returning-the-coordinates-of-the-last-target-last-target-py">
+<h2>Service returning the coordinates of the last target: <em>last_target.py</em><a class="headerlink" href="#service-returning-the-coordinates-of-the-last-target-last-target-py" title="Permalink to this heading"></a></h2>
 </section>
 </section>
 
