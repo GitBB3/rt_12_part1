@@ -1,5 +1,7 @@
 # Assignment 2 part 1 (Updated)
 
+Access documentation for assignment_2_2024 [here][https://gitbb3.github.io/rt_12_part1/].
+
 ## Launch the simulation
 It might be convenient to rename the package rt_12_part1 in assignment_2_2024 while cloning it.
 Launch the simulation with:
