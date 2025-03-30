@@ -4,7 +4,7 @@
    contain the root `toctree` directive.
 
 Documentation of the second **Research Track 1** assignment: *assignment_2_2024*
-===============================================================================
+=====================================================================================
 
 .. toctree::
    :maxdepth: 2
@@ -28,20 +28,17 @@ This is the documentation of the 2nd assignment or Research Track 1 realised dur
 bug_as.py
 *******************************************
 
-.. automodule:: assignment_2_2024.scripts.bug_as
-   :members:
+
 
 go_to_point_service.py
 *******************************************
 
-.. automodule:: assignment_2_2024.scripts.go_to_point_service
-   :members:
+
 
 last_target.py
 *******************************************
 
-.. automodule:: assignment_2_2024.scripts.last_target
-   :members:
+
 
 pub_pos_vit.py
 *******************************************
@@ -52,14 +49,12 @@ pub_pos_vit.py
 set_target.py
 *******************************************
 
-.. automodule:: assignment_2_2024.scripts.set_target
-   :members:
+
    
 wall_follow_service.py
 *******************************************
 
-.. automodule:: assignment_2_2024.scripts.wall_follow_service
-   :members:
+
    
 
 
