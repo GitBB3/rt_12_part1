@@ -76,7 +76,15 @@
 <span class="sd">   </span>
 <span class="sd">.. moduleauthor:: Bertille Beaujean &lt;beaujean.bertille@orange.fr&gt;</span>
 
-<span class="sd">This is the description.</span>
+<span class="sd">ROS node to publish the odometry of the robot. The node publishes the</span>
+<span class="sd">robot position and velocity as a custom message (x,y, vel_x, vel_z), by relying on the values published on the</span>
+<span class="sd">topic /odom.</span>
+
+<span class="sd">**Subscribes to**:</span>
+<span class="sd">/odom topic where the simulator publishes the robot position</span>
+
+<span class="sd">**Publishes to**:</span>
+<span class="sd">/robot_odom the desired components of the odometry of the robot</span>
 
 <span class="sd">&quot;&quot;&quot;</span>
 
@@ -87,14 +95,15 @@
 
 <span class="n">robot_state</span> <span class="o">=</span> <span class="n">RobotOdom</span><span class="p">()</span>
 
+
 <div class="viewcode-block" id="odom_callback"><a class="viewcode-back" href="../../../index.html#assignment_2_2024.scripts.pub_pos_vit.odom_callback">[docs]</a><span class="k">def</span><span class="w"> </span><span class="nf">odom_callback</span><span class="p">(</span><span class="n">msg</span><span class="p">):</span>
-<span class="w">	</span><span class="sd">&quot;&quot;&quot;This function does something.</span>
+<span class="w">	</span><span class="sd">&quot;&quot;&quot;This function reads the relevant position and velocity sent through the message *msg* and should be the information from the topic */odom*. Then, it updates the values of the *robot_state* which is a custom message of type *RobotOdom*, with the current values of (x,y, vel_x, vel_z).</span>
+<span class="sd">	</span>
 <span class="sd">	Args:</span>
-<span class="sd">	   msg (RobotOdom): The custom message.</span>
-<span class="sd">	Kwargs:</span>
-<span class="sd">	   what (can): this possibly be.</span>
+<span class="sd">	   msg (geometry_msgs): The odometry of the robot.</span>
+<span class="sd">	   </span>
 <span class="sd">	Returns:</span>
-<span class="sd">	   nothing.</span>
+<span class="sd">	   No return value.</span>
 <span class="sd">	</span>
 <span class="sd">	&quot;&quot;&quot;</span>
 	<span class="n">robot_state</span><span class="o">.</span><span class="n">x</span> <span class="o">=</span> <span class="n">msg</span><span class="o">.</span><span class="n">pose</span><span class="o">.</span><span class="n">pose</span><span class="o">.</span><span class="n">position</span><span class="o">.</span><span class="n">x</span>
@@ -105,11 +114,20 @@
 	<span class="n">robot_state</span><span class="o">.</span><span class="n">vel_z</span> <span class="o">=</span> <span class="n">msg</span><span class="o">.</span><span class="n">twist</span><span class="o">.</span><span class="n">twist</span><span class="o">.</span><span class="n">angular</span><span class="o">.</span><span class="n">z</span></div>
 
 
-<span class="k">def</span><span class="w"> </span><span class="nf">publish_data</span><span class="p">(</span><span class="n">event</span><span class="p">):</span>
+<div class="viewcode-block" id="publish_data"><a class="viewcode-back" href="../../../index.html#assignment_2_2024.scripts.pub_pos_vit.publish_data">[docs]</a><span class="k">def</span><span class="w"> </span><span class="nf">publish_data</span><span class="p">(</span><span class="n">event</span><span class="p">):</span>
+<span class="w">	</span><span class="sd">&quot;&quot;&quot;This function publishes the values of position and velocity of the robot communicated by the custom message *(RobotOdom)* *event*.</span>
+<span class="sd">	</span>
+<span class="sd">	Args:</span>
+<span class="sd">	   event (RobotOdom): The custom message (x,y, vel_x, vel_z).</span>
+<span class="sd">	   </span>
+<span class="sd">	Returns:</span>
+<span class="sd">	   No return value. </span>
+<span class="sd">	</span>
+<span class="sd">	&quot;&quot;&quot;</span>
 	<span class="n">robot_state_pub</span><span class="o">.</span><span class="n">publish</span><span class="p">(</span><span class="n">robot_state</span><span class="p">)</span>
     
 	<span class="n">rospy</span><span class="o">.</span><span class="n">loginfo</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Position: x=</span><span class="si">{</span><span class="n">robot_state</span><span class="o">.</span><span class="n">x</span><span class="si">}</span><span class="s2">, y=</span><span class="si">{</span><span class="n">robot_state</span><span class="o">.</span><span class="n">y</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-	<span class="n">rospy</span><span class="o">.</span><span class="n">loginfo</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Velocity: Vx=</span><span class="si">{</span><span class="n">robot_state</span><span class="o">.</span><span class="n">vel_x</span><span class="si">}</span><span class="s2">, Wz=</span><span class="si">{</span><span class="n">robot_state</span><span class="o">.</span><span class="n">vel_z</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+	<span class="n">rospy</span><span class="o">.</span><span class="n">loginfo</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Velocity: Vx=</span><span class="si">{</span><span class="n">robot_state</span><span class="o">.</span><span class="n">vel_x</span><span class="si">}</span><span class="s2">, Wz=</span><span class="si">{</span><span class="n">robot_state</span><span class="o">.</span><span class="n">vel_z</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span></div>
 
 <span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
 	<span class="n">rospy</span><span class="o">.</span><span class="n">init_node</span><span class="p">(</span><span class="s1">&#39;odom_publisher&#39;</span><span class="p">,</span> <span class="n">anonymous</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>

@@ -6,7 +6,7 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Welcome to assignment_2_2024’s documentation! &mdash; assignment_2_2024 0.1 documentation</title>
+  <title>Documentation of the second Research Track 1 assignment: assignment_2_2024 &mdash; assignment_2_2024 0.1 documentation</title>
       <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b86133f3" />
       <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
       <link rel="stylesheet" type="text/css" href="_static/graphviz.css?v=eafc0fe6" />
@@ -43,14 +43,16 @@
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <!-- Local TOC -->
               <div class="local-toc"><ul>
-<li><a class="reference internal" href="#">Welcome to assignment_2_2024’s documentation!</a></li>
-<li><a class="reference internal" href="#indices-and-tables">Indices and tables</a><ul>
-<li><a class="reference internal" href="#assignment-2-documentation">Assignment 2 documentation</a></li>
+<li><a class="reference internal" href="#">Documentation of the second <strong>Research Track 1</strong> assignment: <em>assignment_2_2024</em></a></li>
+<li><a class="reference internal" href="#indices-and-tables">Indices and tables</a></li>
+<li><a class="reference internal" href="#assignment-2-documentation">Assignment 2 documentation</a><ul>
+<li><a class="reference internal" href="#module-assignment_2_2024.scripts.pub_pos_vit">Publisher of the odometry of the robot: <em>pub_pos_vit.py</em></a><ul>
+<li><a class="reference internal" href="#assignment_2_2024.scripts.pub_pos_vit.odom_callback"><code class="docutils literal notranslate"><span class="pre">odom_callback()</span></code></a></li>
+<li><a class="reference internal" href="#assignment_2_2024.scripts.pub_pos_vit.publish_data"><code class="docutils literal notranslate"><span class="pre">publish_data()</span></code></a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#test-1">Test 1</a></li>
-<li><a class="reference internal" href="#module-assignment_2_2024.scripts.pub_pos_vit">Node to publish the odometry of the robot</a><ul>
-<li><a class="reference internal" href="#assignment_2_2024.scripts.pub_pos_vit.odom_callback"><code class="docutils literal notranslate"><span class="pre">odom_callback()</span></code></a></li>
+<li><a class="reference internal" href="#action-client-allowing-the-user-to-set-a-target-set-target-py">Action client allowing the user to set a target: <em>set_target.py</em></a></li>
+<li><a class="reference internal" href="#service-returning-the-coordinates-of-the-last-target-last-target-py">Service returning the coordinates of the last target: <em>last_target.py</em></a></li>
 </ul>
 </li>
 </ul>
@@ -69,7 +71,7 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="#" class="icon icon-home" aria-label="Home"></a></li>
-      <li class="breadcrumb-item active">Welcome to assignment_2_2024’s documentation!</li>
+      <li class="breadcrumb-item active">Documentation of the second <strong>Research Track 1</strong> assignment: <em>assignment_2_2024</em></li>
       <li class="wy-breadcrumbs-aside">
             <a href="_sources/index.rst.txt" rel="nofollow"> View page source</a>
       </li>
@@ -79,8 +81,8 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="welcome-to-assignment-2-2024-s-documentation">
-<h1>Welcome to assignment_2_2024’s documentation!<a class="headerlink" href="#welcome-to-assignment-2-2024-s-documentation" title="Permalink to this heading"></a></h1>
+  <section id="documentation-of-the-second-research-track-1-assignment-assignment-2-2024">
+<h1>Documentation of the second <strong>Research Track 1</strong> assignment: <em>assignment_2_2024</em><a class="headerlink" href="#documentation-of-the-second-research-track-1-assignment-assignment-2-2024" title="Permalink to this heading"></a></h1>
 <div class="toctree-wrapper compound">
 </div>
 </section>
@@ -91,37 +93,56 @@
 <li><p><a class="reference internal" href="py-modindex.html"><span class="std std-ref">Module Index</span></a></p></li>
 <li><p><a class="reference internal" href="search.html"><span class="std std-ref">Search Page</span></a></p></li>
 </ul>
+</section>
 <section id="assignment-2-documentation">
-<h2>Assignment 2 documentation<a class="headerlink" href="#assignment-2-documentation" title="Permalink to this heading"></a></h2>
+<h1>Assignment 2 documentation<a class="headerlink" href="#assignment-2-documentation" title="Permalink to this heading"></a></h1>
 <p>This is the documentation of the 2nd assignment or Research Track 1 realised during the first semester.</p>
-</section>
-</section>
-<section id="test-1">
-<h1>Test 1<a class="headerlink" href="#test-1" title="Permalink to this heading"></a></h1>
-<p>lalala</p>
-</section>
 <section id="module-assignment_2_2024.scripts.pub_pos_vit">
-<span id="node-to-publish-the-odometry-of-the-robot"></span><h1>Node to publish the odometry of the robot<a class="headerlink" href="#module-assignment_2_2024.scripts.pub_pos_vit" title="Permalink to this heading"></a></h1>
+<span id="publisher-of-the-odometry-of-the-robot-pub-pos-vit-py"></span><h2>Publisher of the odometry of the robot: <em>pub_pos_vit.py</em><a class="headerlink" href="#module-assignment_2_2024.scripts.pub_pos_vit" title="Permalink to this heading"></a></h2>
 <p><em>Module author: Bertille Beaujean &lt;<a class="reference external" href="mailto:beaujean&#46;bertille&#37;&#52;&#48;orange&#46;fr">beaujean<span>&#46;</span>bertille<span>&#64;</span>orange<span>&#46;</span>fr</a>&gt;</em></p>
-<p>This is the description.</p>
+<p>ROS node to publish the odometry of the robot. The node publishes the
+robot position and velocity as a custom message (x,y, vel_x, vel_z), by relying on the values published on the
+topic /odom.</p>
+<p><strong>Subscribes to</strong>:
+/odom topic where the simulator publishes the robot position</p>
+<p><strong>Publishes to</strong>:
+/robot_odom the desired components of the odometry of the robot</p>
 <dl class="py function">
 <dt class="sig sig-object py" id="assignment_2_2024.scripts.pub_pos_vit.odom_callback">
 <span class="sig-prename descclassname"><span class="pre">assignment_2_2024.scripts.pub_pos_vit.</span></span><span class="sig-name descname"><span class="pre">odom_callback</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">msg</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/assignment_2_2024/scripts/pub_pos_vit.html#odom_callback"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#assignment_2_2024.scripts.pub_pos_vit.odom_callback" title="Permalink to this definition"></a></dt>
-<dd><p>This function does something.
-:param msg: The custom message.
-:type msg: RobotOdom</p>
-<dl class="simple">
-<dt>Kwargs:</dt><dd><p>what (can): this possibly be.</p>
-</dd>
-</dl>
+<dd><p>This function reads the relevant position and velocity sent through the message <em>msg</em> and should be the information from the topic <em>/odom</em>. Then, it updates the values of the <em>robot_state</em> which is a custom message of type <em>RobotOdom</em>, with the current values of (x,y, vel_x, vel_z).</p>
 <dl class="field-list simple">
-<dt class="field-odd">Returns<span class="colon">:</span></dt>
-<dd class="field-odd"><p>nothing.</p>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>msg</strong> (<em>geometry_msgs</em>) – The odometry of the robot.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>No return value.</p>
 </dd>
 </dl>
 </dd></dl>
 
-<span class="target" id="module-assignment_2_2024.scripts.last_target"></span></section>
+<dl class="py function">
+<dt class="sig sig-object py" id="assignment_2_2024.scripts.pub_pos_vit.publish_data">
+<span class="sig-prename descclassname"><span class="pre">assignment_2_2024.scripts.pub_pos_vit.</span></span><span class="sig-name descname"><span class="pre">publish_data</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">event</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/assignment_2_2024/scripts/pub_pos_vit.html#publish_data"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#assignment_2_2024.scripts.pub_pos_vit.publish_data" title="Permalink to this definition"></a></dt>
+<dd><p>This function publishes the values of position and velocity of the robot communicated by the custom message <em>(RobotOdom)</em> <em>event</em>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>event</strong> (<em>RobotOdom</em>) – The custom message (x,y, vel_x, vel_z).</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>No return value.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="action-client-allowing-the-user-to-set-a-target-set-target-py">
+<h2>Action client allowing the user to set a target: <em>set_target.py</em><a class="headerlink" href="#action-client-allowing-the-user-to-set-a-target-set-target-py" title="Permalink to this heading"></a></h2>
+</section>
+<section id="service-returning-the-coordinates-of-the-last-target-last-target-py">
+<h2>Service returning the coordinates of the last target: <em>last_target.py</em><a class="headerlink" href="#service-returning-the-coordinates-of-the-last-target-last-target-py" title="Permalink to this heading"></a></h2>
+</section>
+</section>
 
 
            </div>
