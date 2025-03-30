@@ -1,4 +1,4 @@
-# Assignment 2 part 1 (Updated)
+# Assignment 2 part 1
 
 Access documentation for assignment_2_2024 [here](https://gitbb3.github.io/rt_12_part1/).
 
