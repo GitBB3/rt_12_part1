@@ -28,7 +28,7 @@ robot_state = RobotOdom()
 
 
 def odom_callback(msg):
-	"""This function reads the relevant position and velocity sent through the message *msg* and should be the information from the topic */odom*. Then, it updates the values of the *robot_state* which is a custom message of type *RobotOdom*, with the current values of (x,y, vel_x, vel_z).
+	"""This function reads the relevant position and velocity sent through the message *msg*, which should be the information from the topic */odom*. Then, it updates the values of the *robot_state* which is a custom message of type *RobotOdom*, with the current values of (x,y, vel_x, vel_z).
 	
 	Args:
 	   msg (geometry_msgs): The odometry of the robot.

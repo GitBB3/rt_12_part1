@@ -3,11 +3,14 @@
 """
 .. module: last_target
    :platform unix
-   :synopsis: Is another script blablabla.
-
-This is the description of the second script.
+   :synopsis: Service node that, when called, returns the coordinates of the last target sent by the user.
 
 .. moduleauthor:: Bertille Beaujean <beaujean.bertille@orange.fr>
+
+Service node that, when called, returns the coordinates of the last target sent by the user.
+
+**Service:**
+/last_target
 
 """
 
@@ -15,13 +18,13 @@ import rospy
 from assignment_2_2024.srv import LastTarget, LastTargetResponse
 
 def callback(targ):
-	"""This function does something.
+	"""This function reads the position of the last target sent to the robot, on the topics */des_pos_x* and */des_pos_y*.
+	
 	Args:
-	   msg (RobotOdom): The custom message.
-	Kwargs:
-	   what (can): this possibly be.
+	   targ (srv): The service.
+	   
 	Returns:
-	   nothing.
+	   coordinates x and y of the last target LastTargetResponse()
 	
 	"""
 	rospy.loginfo("Last target: ")

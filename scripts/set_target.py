@@ -1,5 +1,19 @@
 #!/usr/bin/env python
 
+"""
+.. module: set_target
+   :platform: unix
+   :synopsis: A node that implements an action client, allowing the user to set a target (x, y) or to cancel it.
+   
+.. moduleauthor:: Bertille Beaujean <beaujean.bertille@orange.fr>
+
+ROS node that implements an action client, allowing the user to set a target (x, y) or to cancel it.
+
+**Client:**
+/reaching_goal
+
+"""
+
 import rospy
 import actionlib
 from nav_msgs.msg import Odometry
@@ -7,6 +21,16 @@ from assignment_2_2024.msg import RobotOdom, PlanningAction, PlanningGoal
 from actionlib_msgs.msg import GoalStatus
 
 def set_target_client():
+	"""When called, this client enables to set a new target or cancel the previous one.
+	
+	The client uses the action *PlanningAction*.
+	
+	We use the feedback/status of the action server to know when the target has been reached.
+	
+	The required coordinates of the new target are written in the ros parameters */des_pos_x* and */des_pos_y*.
+	
+	"""
+	
 	global first_start
 	client = actionlib.SimpleActionClient('/reaching_goal', PlanningAction)
 	client.wait_for_server()

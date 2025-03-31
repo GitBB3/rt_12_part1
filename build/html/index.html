@@ -45,14 +45,21 @@
               <div class="local-toc"><ul>
 <li><a class="reference internal" href="#">Documentation of the second <strong>Research Track 1</strong> assignment: <em>assignment_2_2024</em></a></li>
 <li><a class="reference internal" href="#indices-and-tables">Indices and tables</a></li>
-<li><a class="reference internal" href="#assignment-2-documentation">Assignment 2 documentation</a><ul>
+<li><a class="reference internal" href="#launch-the-simulation">Launch the simulation</a></li>
+<li><a class="reference internal" href="#scripts-documentation">Scripts documentation</a><ul>
 <li><a class="reference internal" href="#module-assignment_2_2024.scripts.pub_pos_vit">Publisher of the odometry of the robot: <em>pub_pos_vit.py</em></a><ul>
 <li><a class="reference internal" href="#assignment_2_2024.scripts.pub_pos_vit.odom_callback"><code class="docutils literal notranslate"><span class="pre">odom_callback()</span></code></a></li>
 <li><a class="reference internal" href="#assignment_2_2024.scripts.pub_pos_vit.publish_data"><code class="docutils literal notranslate"><span class="pre">publish_data()</span></code></a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#action-client-allowing-the-user-to-set-a-target-set-target-py">Action client allowing the user to set a target: <em>set_target.py</em></a></li>
-<li><a class="reference internal" href="#service-returning-the-coordinates-of-the-last-target-last-target-py">Service returning the coordinates of the last target: <em>last_target.py</em></a></li>
+<li><a class="reference internal" href="#module-assignment_2_2024.scripts.set_target">Action client allowing the user to set a target: <em>set_target.py</em></a><ul>
+<li><a class="reference internal" href="#assignment_2_2024.scripts.set_target.set_target_client"><code class="docutils literal notranslate"><span class="pre">set_target_client()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#module-assignment_2_2024.scripts.last_target">Service returning the coordinates of the last target: <em>last_target.py</em></a><ul>
+<li><a class="reference internal" href="#assignment_2_2024.scripts.last_target.callback"><code class="docutils literal notranslate"><span class="pre">callback()</span></code></a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -94,8 +101,22 @@
 <li><p><a class="reference internal" href="search.html"><span class="std std-ref">Search Page</span></a></p></li>
 </ul>
 </section>
-<section id="assignment-2-documentation">
-<h1>Assignment 2 documentation<a class="headerlink" href="#assignment-2-documentation" title="Permalink to this heading"></a></h1>
+<section id="launch-the-simulation">
+<h1>Launch the simulation<a class="headerlink" href="#launch-the-simulation" title="Permalink to this heading"></a></h1>
+<p>It might be convenient to rename the package rt_12_part1 in assignment_2_2024 while cloning it.
+Launch the simulation with:</p>
+<p><code class="docutils literal notranslate"><span class="pre">roslaunch</span> <span class="pre">assignment_2_2024</span> <span class="pre">assignment1_modified.launch</span></code></p>
+<p>As a result, you should see</p>
+<ul class="simple">
+<li><p>a window with gazebo simulating the robot and its environment ;</p></li>
+<li><p>a window with Rviz ;</p></li>
+<li><p>a terminal showing the position (x,y) and the velocity (Vx,Wz) of the robot every second _pub_pos_vit.py_ (pub/sub using a custom message built from the topic /odom);</p></li>
+<li><p>a terminal to set or cancel new targets, with a message explaining how to do so _set_target.py_ (action client using feedback status to know when the target has been reached);</p></li>
+<li><p>a terminal for the output of the service node _last_target_, which shows the coordinates (x,y) of the last target sent by the user (service returning the coordinates of the last target when called). The node should be called on a terminal by <strong>rosservice call /last_target</strong> whenever the user wants information on the last node.</p></li>
+</ul>
+</section>
+<section id="scripts-documentation">
+<h1>Scripts documentation<a class="headerlink" href="#scripts-documentation" title="Permalink to this heading"></a></h1>
 <p>This is the documentation of the 2nd assignment or Research Track 1 realised during the first semester.</p>
 <section id="module-assignment_2_2024.scripts.pub_pos_vit">
 <span id="publisher-of-the-odometry-of-the-robot-pub-pos-vit-py"></span><h2>Publisher of the odometry of the robot: <em>pub_pos_vit.py</em><a class="headerlink" href="#module-assignment_2_2024.scripts.pub_pos_vit" title="Permalink to this heading"></a></h2>
@@ -110,7 +131,7 @@ topic /odom.</p>
 <dl class="py function">
 <dt class="sig sig-object py" id="assignment_2_2024.scripts.pub_pos_vit.odom_callback">
 <span class="sig-prename descclassname"><span class="pre">assignment_2_2024.scripts.pub_pos_vit.</span></span><span class="sig-name descname"><span class="pre">odom_callback</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">msg</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/assignment_2_2024/scripts/pub_pos_vit.html#odom_callback"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#assignment_2_2024.scripts.pub_pos_vit.odom_callback" title="Permalink to this definition"></a></dt>
-<dd><p>This function reads the relevant position and velocity sent through the message <em>msg</em> and should be the information from the topic <em>/odom</em>. Then, it updates the values of the <em>robot_state</em> which is a custom message of type <em>RobotOdom</em>, with the current values of (x,y, vel_x, vel_z).</p>
+<dd><p>This function reads the relevant position and velocity sent through the message <em>msg</em>, which should be the information from the topic <em>/odom</em>. Then, it updates the values of the <em>robot_state</em> which is a custom message of type <em>RobotOdom</em>, with the current values of (x,y, vel_x, vel_z).</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>msg</strong> (<em>geometry_msgs</em>) – The odometry of the robot.</p>
@@ -136,11 +157,42 @@ topic /odom.</p>
 </dd></dl>
 
 </section>
-<section id="action-client-allowing-the-user-to-set-a-target-set-target-py">
-<h2>Action client allowing the user to set a target: <em>set_target.py</em><a class="headerlink" href="#action-client-allowing-the-user-to-set-a-target-set-target-py" title="Permalink to this heading"></a></h2>
+<section id="module-assignment_2_2024.scripts.set_target">
+<span id="action-client-allowing-the-user-to-set-a-target-set-target-py"></span><h2>Action client allowing the user to set a target: <em>set_target.py</em><a class="headerlink" href="#module-assignment_2_2024.scripts.set_target" title="Permalink to this heading"></a></h2>
+<p><em>Module author: Bertille Beaujean &lt;<a class="reference external" href="mailto:beaujean&#46;bertille&#37;&#52;&#48;orange&#46;fr">beaujean<span>&#46;</span>bertille<span>&#64;</span>orange<span>&#46;</span>fr</a>&gt;</em></p>
+<p>ROS node that implements an action client, allowing the user to set a target (x, y) or to cancel it.</p>
+<p><strong>Client:</strong>
+/reaching_goal</p>
+<dl class="py function">
+<dt class="sig sig-object py" id="assignment_2_2024.scripts.set_target.set_target_client">
+<span class="sig-prename descclassname"><span class="pre">assignment_2_2024.scripts.set_target.</span></span><span class="sig-name descname"><span class="pre">set_target_client</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/assignment_2_2024/scripts/set_target.html#set_target_client"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#assignment_2_2024.scripts.set_target.set_target_client" title="Permalink to this definition"></a></dt>
+<dd><p>When called, this client enables to set a new target or cancel the previous one.</p>
+<p>The client uses the action <em>PlanningAction</em>.</p>
+<p>We use the feedback/status of the action server to know when the target has been reached.</p>
+<p>The required coordinates of the new target are written in the ros parameters <em>/des_pos_x</em> and <em>/des_pos_y</em>.</p>
+</dd></dl>
+
 </section>
-<section id="service-returning-the-coordinates-of-the-last-target-last-target-py">
-<h2>Service returning the coordinates of the last target: <em>last_target.py</em><a class="headerlink" href="#service-returning-the-coordinates-of-the-last-target-last-target-py" title="Permalink to this heading"></a></h2>
+<section id="module-assignment_2_2024.scripts.last_target">
+<span id="service-returning-the-coordinates-of-the-last-target-last-target-py"></span><h2>Service returning the coordinates of the last target: <em>last_target.py</em><a class="headerlink" href="#module-assignment_2_2024.scripts.last_target" title="Permalink to this heading"></a></h2>
+<p><em>Module author: Bertille Beaujean &lt;<a class="reference external" href="mailto:beaujean&#46;bertille&#37;&#52;&#48;orange&#46;fr">beaujean<span>&#46;</span>bertille<span>&#64;</span>orange<span>&#46;</span>fr</a>&gt;</em></p>
+<p>Service node that, when called, returns the coordinates of the last target sent by the user.</p>
+<p><strong>Service:</strong>
+/last_target</p>
+<dl class="py function">
+<dt class="sig sig-object py" id="assignment_2_2024.scripts.last_target.callback">
+<span class="sig-prename descclassname"><span class="pre">assignment_2_2024.scripts.last_target.</span></span><span class="sig-name descname"><span class="pre">callback</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">targ</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/assignment_2_2024/scripts/last_target.html#callback"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#assignment_2_2024.scripts.last_target.callback" title="Permalink to this definition"></a></dt>
+<dd><p>This function reads the position of the last target sent to the robot, on the topics <em>/des_pos_x</em> and <em>/des_pos_y</em>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>targ</strong> (<em>srv</em>) – The service.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>coordinates x and y of the last target LastTargetResponse()</p>
+</dd>
+</dl>
+</dd></dl>
+
 </section>
 </section>
 
