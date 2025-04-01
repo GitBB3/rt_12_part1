@@ -36,7 +36,7 @@ As a result, you should see
 
 - a terminal to set or cancel new targets, with a message explaining how to do so _set_target.py_ (action client using feedback status to know when the target has been reached);
 
-- a terminal for the output of the service node _last_target_, which shows the coordinates (x,y) of the last target sent by the user (service returning the coordinates of the last target when called). The node should be called on a terminal by **rosservice call /last_target** whenever the user wants information on the last node.
+- a terminal for the output of the service node _last_target_, which shows the coordinates (x,y) of the last target sent by the user (service returning the coordinates of the last target when called). The node should be called on another terminal by ``rosservice call /last_target`` whenever the user wants information on the last node.
 
 
 
