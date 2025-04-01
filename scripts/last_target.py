@@ -18,7 +18,7 @@ import rospy
 from assignment_2_2024.srv import LastTarget, LastTargetResponse
 
 def callback(targ):
-	"""This function reads the position of the last target sent to the robot, on the topics */des_pos_x* and */des_pos_y*.
+	"""This function reads the position of the last target sent to the robot, on the topics */des_pos_x* and */des_pos_y*. It informs the user of their value with 'loginfo'.
 	
 	Args:
 	   targ (srv): The service.

@@ -112,7 +112,7 @@ Launch the simulation with:</p>
 <li><p>a window with Rviz ;</p></li>
 <li><p>a terminal showing the position (x,y) and the velocity (Vx,Wz) of the robot every second _pub_pos_vit.py_ (pub/sub using a custom message built from the topic /odom);</p></li>
 <li><p>a terminal to set or cancel new targets, with a message explaining how to do so _set_target.py_ (action client using feedback status to know when the target has been reached);</p></li>
-<li><p>a terminal for the output of the service node _last_target_, which shows the coordinates (x,y) of the last target sent by the user (service returning the coordinates of the last target when called). The node should be called on a terminal by <strong>rosservice call /last_target</strong> whenever the user wants information on the last node.</p></li>
+<li><p>a terminal for the output of the service node _last_target_, which shows the coordinates (x,y) of the last target sent by the user (service returning the coordinates of the last target when called). The node should be called on another terminal by <code class="docutils literal notranslate"><span class="pre">rosservice</span> <span class="pre">call</span> <span class="pre">/last_target</span></code> whenever the user wants information on the last node.</p></li>
 </ul>
 </section>
 <section id="scripts-documentation">
@@ -182,7 +182,7 @@ topic /odom.</p>
 <dl class="py function">
 <dt class="sig sig-object py" id="assignment_2_2024.scripts.last_target.callback">
 <span class="sig-prename descclassname"><span class="pre">assignment_2_2024.scripts.last_target.</span></span><span class="sig-name descname"><span class="pre">callback</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">targ</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/assignment_2_2024/scripts/last_target.html#callback"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#assignment_2_2024.scripts.last_target.callback" title="Permalink to this definition"></a></dt>
-<dd><p>This function reads the position of the last target sent to the robot, on the topics <em>/des_pos_x</em> and <em>/des_pos_y</em>.</p>
+<dd><p>This function reads the position of the last target sent to the robot, on the topics <em>/des_pos_x</em> and <em>/des_pos_y</em>. It informs the user of their value with ‘loginfo’.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>targ</strong> (<em>srv</em>) – The service.</p>
